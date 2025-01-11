@@ -9,9 +9,15 @@ document.addEventListener('DOMContentLoaded', () => {
     let mediaRecorder;
     let audioChunks = [];
     let selectedModel;
+    let browserAI;
 
     // Initialize BrowserAI
-    const browserAI = new BrowserAI();
+    async function initializeBrowserAI() {
+        browserAI = new BrowserAI();
+        await browserAI.init();
+    }
+
+    initializeBrowserAI();
 
     // Handle audio recording
     recordButton.addEventListener('click', async () => {
@@ -31,7 +37,9 @@ document.addEventListener('DOMContentLoaded', () => {
             mediaRecorder.onstop = async () => {
                 const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
                 audioChunks = [];
-                const transcription = await browserAI.transcribe(audioBlob);
+                const arrayBuffer = await audioBlob.arrayBuffer();
+                const audioBuffer = new Float32Array(arrayBuffer);
+                const transcription = await browserAI.transcribe(audioBuffer);
                 transcriptionArea.value = transcription;
                 generateNoteButton.disabled = false;
             };
