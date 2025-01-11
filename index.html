@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Medical SOAP Note Generator</title>
+</head>
+<body>
+    <h1>Medical SOAP Note Generator</h1>
+    <button id="recordButton">Start Recording</button>
+    <textarea id="transcription" placeholder="Transcription will appear here..." rows="10" cols="50"></textarea>
+    <br>
+    <label for="modelSelect">Select Model:</label>
+    <select id="modelSelect">
+        <option value="model1">Model 1</option>
+        <option value="model2">Model 2</option>
+        <!-- Add more models as needed -->
+    </select>
+    <button id="loadModelButton">Download and Load Model</button>
+    <br>
+    <button id="generateNoteButton" disabled>Generate SOAP Note</button>
+    <textarea id="soapNote" placeholder="SOAP Note will appear here..." rows="10" cols="50"></textarea>
+    <script src="app.js"></script>
+</body>
+</html>
